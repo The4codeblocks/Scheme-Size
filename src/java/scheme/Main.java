@@ -28,7 +28,7 @@ public class Main extends Mod {
 
     public Main() {
         // well, after the 136th build, it became much easier
-        maxSchematicSize = 512;
+        maxSchematicSize = 2147483647;
 
         // mod reimported through mods dialog
         if (schematics.getClass().getSimpleName().startsWith("Moded")) return;
