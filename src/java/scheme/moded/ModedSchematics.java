@@ -142,14 +142,16 @@ public class ModedSchematics extends Schematics {
             int total = stream.readInt();
             Seq<Stile> tiles = new Seq<>(total);
             for (int i = 0; i < total; i++) {
+		    try {
                 Block block = blocks.get(stream.readByte());
                 int position = stream.readInt();
                 Object config = ver == 0 ?
                         Reflect.invoke(Schematics.class, "mapConfig", new Object[] { block, stream.readInt(), position }, Block.class, int.class, int.class) :
                         TypeIO.readObject(Reads.get(stream));
-				Log.info(config);
+		Log.info(config);
                 if (block != Blocks.air)
                     tiles.add(new Stile(block, Point2.x(position), Point2.y(position), config, stream.readByte()));
+		    } catch (Exception e) {}
             }
 
             Schematic out = new Schematic(tiles, map, width, height);
