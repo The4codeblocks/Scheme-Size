@@ -147,6 +147,7 @@ public class ModedSchematics extends Schematics {
                 Object config = ver == 0 ?
                         Reflect.invoke(Schematics.class, "mapConfig", new Object[] { block, stream.readInt(), position }, Block.class, int.class, int.class) :
                         TypeIO.readObject(Reads.get(stream));
+				Log.info(config);
                 if (block != Blocks.air)
                     tiles.add(new Stile(block, Point2.x(position), Point2.y(position), config, stream.readByte()));
             }
